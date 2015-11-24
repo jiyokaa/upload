@@ -42,6 +42,7 @@
 error_reporting(All);
 	require 'db/connect.php' ;
 	require 'function/security.php';
+	include "lib/WideImage.php";
 	if(isset($_FILES['image'])){
 		
 		//for expire date
@@ -73,18 +74,42 @@ error_reporting(All);
 		}				
 		if(empty($errors)==true){
 			move_uploaded_file($file_tmp,"wallpaper/All/".$file_name);
-			if($_POST["Classroom1"]=="true")
+			if($_POST["Classroom1"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Classroom/".$file_name);
-			if($_POST["Classroom2"]=="true")
+				$image = WideImage::load("wallpaper/Classroom/".$file_name);
+				$resized = $image->resize(1024, 768);
+				$resized->saveToFile("wallpaper/Classroom/".$file_name);
+			}
+			if($_POST["Classroom2"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Classroom2/".$file_name);
-			if($_POST["Dormitory"]=="true")
+				$image = WideImage::load("wallpaper/Classroom2/".$file_name);
+				$resized = $image->resize(1024, 768);
+				$resized->saveToFile("wallpaper/Classroom2/".$file_name);
+			}
+			if($_POST["Dormitory"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Dormitory/".$file_name);
-			if($_POST["ITMT"]=="true")
+				$image = WideImage::load("wallpaper/Dormitory/".$file_name);
+				$resized = $image->resize(1980, 1080);
+				$resized->saveToFile("wallpaper/Dormitory/".$file_name);			
+			}
+			if($_POST["ITMT"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/ITMT/".$file_name);
-			if($_POST["LAB"]=="true")
-				copy("wallpaper/All/".$file_name, "wallpaper/LAB/".$file_name);											
-			if($_POST["Sirindralai"]=="true")
-				copy("wallpaper/All/".$file_name, "wallpaper/Sirindralai/".$file_name);											
+				$image = WideImage::load("wallpaper/ITMT/".$file_name);
+				$resized = $image->resize(1980, 1080);
+				$resized->saveToFile("wallpaper/ITMT/".$file_name);				
+			}
+			if($_POST["LAB"]=="true"){
+				copy("wallpaper/All/".$file_name, "wallpaper/LAB/".$file_name);	
+				$image = WideImage::load("wallpaper/LAB/".$file_name);
+				$resized = $image->resize(1980, 1080);
+				$resized->saveToFile("wallpaper/LAB/".$file_name);		
+			}				
+			if($_POST["Sirindralai"]=="true"){
+				copy("wallpaper/All/".$file_name, "wallpaper/Sirindralai/".$file_name);
+				$image = WideImage::load("wallpaper/Sirindralai/".$file_name);
+				$resized = $image->resize(1980, 1080);
+				$resized->saveToFile("wallpaper/Sirindralai/".$file_name);	
+			}				
 			
 			echo "<div class=\"alert alert-success\">";
 			echo  "<strong>Success!</strong> Click OK Button to return to the index page.";
