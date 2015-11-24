@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+	session_start();
+	echo $_SESSION["auth"];
+?><!DOCTYPE html>
 <html lang="th">
 <head>
   <title>Picture Upload</title>
@@ -54,7 +57,7 @@
 				<div class="checkbox">
 				  <label><input type="checkbox" name="Sirindralai" value="true">Sirindralai (16:9)</label>
 				</div>
-			<input type="submit" class="btn btn-primary" />
+			<input type="submit" class="btn btn-primary" /> <a href="logout.php" class="btn btn-primary">Loggout</a>
 			</form>
 		</div>
 		<div class="col-sm-2"></div>

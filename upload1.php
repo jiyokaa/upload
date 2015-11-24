@@ -39,8 +39,9 @@
 *      GNU General Public License for more details.
 *     
 */
-error_reporting(0);
-	
+error_reporting(All);
+	require 'db/connect.php' ;
+	require 'function/security.php';
 	if(isset($_FILES['image'])){
 		
 		//for expire date
