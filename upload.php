@@ -1,17 +1,12 @@
 <?php
 	session_start();
-	echo $_SESSION["auth"];
-?><!DOCTYPE html>
-<html lang="th">
-<head>
-  <title>Picture Upload</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
+	//echo $_SESSION["auth"];
+	if (!$_SESSION["auth"])
+		header("Location: login.php");
+	include("include/view.inc.php");
+	
+	getHeader("Upload Information Page","Upload Information Page");
+?>
 
 <div class="container">
 	<div class="row">
@@ -57,7 +52,9 @@
 				<div class="checkbox">
 				  <label><input type="checkbox" name="Sirindralai" value="true">Sirindralai (16:9)</label>
 				</div>
-			<input type="submit" class="btn btn-primary" /> <a href="logout.php" class="btn btn-primary">Loggout</a>
+			<input type="submit" class="btn btn-primary" /> 
+			<a href="elfinder/fileManage.php" target="_blank" class="btn btn-danger">Delete Picture Page</a> <a href="logout.php" class="btn btn-primary">Logout</a>
+			
 			</form>
 		</div>
 		<div class="col-sm-2"></div>
@@ -65,7 +62,11 @@
 </div>
 
 
+<?php
+	
+	getFooter();
 
+?>
 
 </body>
 

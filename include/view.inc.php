@@ -84,6 +84,7 @@ function getFooter(){
 	echo 	"			<div class=\"col-sm-12\">";
 	echo	"<p>Version 1.0</p>";
 	echo 	"				<p>Copyright  <span class=\"glyphicon glyphicon-copyright-mark\"></span> 2015 Computer and Audiovisual Center <p>";
+	echo	"<p>Contact Information :K. Veraphon (ext. 4601)</p>";
 	echo 	"				<p>Sirindhorn International Institute of Technology ,Thammasat University</p>";
 
 	echo 	"			</div>";

@@ -52,11 +52,18 @@
 
 <main>
 	<div class="container">
+			<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<img src="images\logo.jpg" class="img-rounded" alt="Cinque Terre" width="100%">
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
 		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
 			
-				<h3>Welcome to the SIIT Ticket System</h3>
+				<h3>Welcome to the upload wallpaper page</h3>
 				<form method = "post" action = "" role="form">
 				  <div class="form-group">
 					<label for="username">Username:</label>
@@ -78,8 +85,9 @@
 				</form>
 			
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-4"></div>
 		</div>
+
 	</div>
 </main>
 
