@@ -6,6 +6,7 @@
 	include("include/view.inc.php");
 	
 	getHeader("Upload Information Page","Upload Information Page");
+	getNav();
 ?>
 
 <div class="container">
@@ -59,7 +60,7 @@
 			<?php
 				if($_SESSION["isAdmin"] == '1'){
 			?>
-			<a href="#" class="btn btn-primary"> <i class="fa fa-users"></i> Users Management</a>
+			<a href="user.php" class="btn btn-primary"> <i class="fa fa-users"></i> Users Management</a>
 			
 			<?php
 				}

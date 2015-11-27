@@ -43,18 +43,24 @@ function getNav(){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="index.php">SIIT Ticker Management</a>
+      <a class="navbar-brand" href="index.php">Welcome <?php echo $_SESSION["name"]?></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">User<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="newUser.php"><i class="fa fa-user-plus"></i> New User</a></li>
-            <li><a href="listUser.php"><i class="fa fa-users"></i> List all user</a></li>
-          </ul>
-        </li>
+			<?php
+				if($_SESSION["isAdmin"] == '1'){
+			?>
+				<li class="dropdown">
+				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="user.php"><i class="fa fa-user-plus"></i> New User</a></li>
+					<li><a href="#"><i class="fa fa-users"></i> List all user</a></li>
+				  </ul>
+				</li>
+		<?php
+				}
+		?>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-task"></i> Jobs<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -66,7 +72,7 @@ function getNav(){
 		<li><a href="admin.php"><i class="fa fa-lock"></i> Admin</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
+		 
         <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>

@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
 	error_reporting(E_ALL);
 	require 'db/connect.php' ;
 	require 'function/security.php';
@@ -12,8 +12,7 @@
 			$name=trim($_POST['name']);
 			$username=trim($_POST['username']);
 			$password=hash("sha512",trim($_POST['password']));
-			//$password=hash("sha512",$_POST['password']);
-			$isAdmin = 0;
+			$isAdmin = $_POST['isAdmin'];
 			if(!empty($name) && !empty($username) && !empty($password)){
 				$insert=$db->prepare("Insert Into admin (name, username, password, isAdmin) value (?, ?, ?, ?)");
 				$insert->bind_param('ssss',$name, $username, $password, $isAdmin);
@@ -38,6 +37,7 @@
 	include("include/view.inc.php");
 	
 	getHeader("User Manager","User Manager");	
+	getNav();
 ?>
 
 <body>
@@ -59,7 +59,7 @@
 							<th>Name</th>
 							<th>User Name</th>							
 							<th>Account Type</th>
-							
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -73,7 +73,7 @@
 							<td><?php echo escape($r->username); ?></td>
 							
 							<td><?php echo ($r->isAdmin=='1'?'Admin':'User'); ?></td>
-						
+							<td><?php echo "<a href='deleteuser.php?id=$r->id' onClick=\"return confirm('are you sure you want to delete??');\"><i class=\"fa fa-minus-circle fa-2x\" style=\"color:red\"></i> </a>"; ?></td>
 						<tr>
 						<?php
 							$i++;
@@ -110,7 +110,10 @@
 					<label for="password">Password:</label>
 					<input type="password" name="password" id="password" class="form-control" autocomplete="off">
 				</div>
-
+				<div class="form-group">
+					<label class="radio-inline"><input type="radio" name="isAdmin" value="1">Admin</label>
+					<label class="radio-inline"><input type="radio" name="isAdmin" value="0" checked="checked">User</label>
+				</div>
 				<input type="submit" value="Insert" class="btn btn-primary">
 			</form>
 		</div><!-- end col -->
@@ -122,4 +125,5 @@
 
 		
 	</body>
-</html>
+<?php
+	getFooter();

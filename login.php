@@ -40,6 +40,7 @@
 						
 						foreach($records as $r){
 							$_SESSION["isAdmin"] = $r->isAdmin;
+							$_SESSION["name"] = $r->name;
 						}
 						
 						
