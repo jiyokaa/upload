@@ -28,20 +28,36 @@
 				$error.=  "<strong>Error!</strong> New password & Confirm password mismatch.";
 				$error.= "</div>";
 			}
-			//กรณีกรอกพาสเวิร์ดเก่าไม่ตรง
+			//เรียกฐานข้อมูลเพื่อเช็คเงื่อนไข
 				$username = $_SESSION["username"];
 				$oldPass=hash("sha512",$_POST["oldPass"]);
-				$select=$db->query("SELECT * FROM admin where username like '$username' AND password like '$oldPass'");
+				$select=$db->query("SELECT * FROM admin where username like '$username'");
 
 				if($select->num_rows){
-						
-				} else{
-					$errorCode=1;
-					$error="<div class=\"alert alert-danger\">";
-					$error.=  "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
-					$error.=  "<strong>Error!</strong> Your old password is mismatch from our database.";
-					$error.= "</div>";
-				} 
+					while($row=$select->fetch_object()) {
+						$records[]=$row;	
+					}
+				} $select->free();
+				
+			//เช็คเงื่อนไข
+				foreach($records as $r){
+					//กรอกพาสเวิร์ดไม่ตรง
+					if($r->password!=$oldPass){
+						$errorCode=1;
+						$error="<div class=\"alert alert-danger\">";
+						$error.=  "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
+						$error.=  "<strong>Error!</strong> Your old password is mismatch from our database.";
+						$error.= "</div>";						
+					}
+				}
+				
+			//	else{
+			//		$errorCode=1;
+			//		$error="<div class=\"alert alert-danger\">";
+			//		$error.=  "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
+			//		$error.=  "<strong>Error!</strong> Your old password is mismatch from our database.";
+			//		$error.= "</div>";
+			//	} 
 		}
 		
 	}
