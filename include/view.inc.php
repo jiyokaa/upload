@@ -55,21 +55,16 @@ function getNav(){
 				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management<span class="caret"></span></a>
 				  <ul class="dropdown-menu">
 					<li><a href="user.php"><i class="fa fa-user-plus"></i> New User</a></li>
-					<li><a href="passwd.php"><i class="fa fa-users"></i>Change your password</a></li>
+					<li><a href="passwd.php"><i class="fa fa-pencil"></i>Change your password</a></li>
 				  </ul>
 				</li>
 		<?php
-				}
+				} else{
 		?>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-task"></i> Jobs<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="listAllTicket.php?isclose=1"><i class="fa fa-play"></i> In process</a></li>
-            <li><a href="listCloseTicket.php?isclose=0"><i class="fa fa-check"></i> Closed</a></li>
-          </ul>
-        </li>
-        <li><a href="listDept.php"><i class="fa fa-building"></i> Department</a></li>
-		<li><a href="admin.php"><i class="fa fa-lock"></i> Admin</a></li>
+
+			<li><a href="passwd.php"><i class="fa fa-pencil"></i> Change your password</a></li>
+				<?php } ?>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		 
