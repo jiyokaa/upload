@@ -110,6 +110,7 @@ error_reporting(All);
 				$resized = $image->resize(1980, 1080);
 				$resized->saveToFile("wallpaper/Sirindralai/".$file_name);	
 			}				
+			//เขียน Log
 			
 			echo "<div class=\"alert alert-success\">";
 			echo  "<strong>Success!</strong> Click OK Button to return to the index page.";

@@ -47,12 +47,12 @@ function getNav(){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home</a></li>
+        <li class="active"><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
 			<?php
 				if($_SESSION["isAdmin"] == '1'){
 			?>
 				<li class="dropdown">
-				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management<span class="caret"></span></a>
+				  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-users"></i> User Management<span class="caret"></span></a>
 				  <ul class="dropdown-menu">
 					<li><a href="user.php"><i class="fa fa-user-plus"></i> New User</a></li>
 					<li><a href="passwd.php"><i class="fa fa-pencil"></i>Change your password</a></li>
@@ -64,7 +64,7 @@ function getNav(){
 
 			<li><a href="passwd.php"><i class="fa fa-pencil"></i> Change your password</a></li>
 				<?php } ?>
-
+			<li><a href="elfinder/fileManage.php" target="_blank"><i class="fa fa-trash"></i> Delete Picture Page</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		 

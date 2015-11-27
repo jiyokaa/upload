@@ -140,7 +140,7 @@
 					<input type="password" name="newPass2" id="newPass2" class="form-control" autocomplete="off">
 				</div>
 
-				<input type="submit" value="Insert" class="btn btn-primary">
+				<input type="submit" value="Change" class="btn btn-primary">
 			</form>
 		</div><!-- end col -->
 		<div class="col-sm-2"></div><!-- end col -->
