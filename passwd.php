@@ -30,19 +30,18 @@
 			}
 			//กรณีกรอกพาสเวิร์ดเก่าไม่ตรง
 				$username = $_SESSION["username"];
-				$oldPass=$_POST["oldPass"];
-				$select=$db->query("SELECT * FROM admin where username = ? AND password = ?");
-				$select->bind_param('ss', $username, $oldPass);
-				
-			if($select->num_rows){
-				echo "ถูกต้องงงง";
-			} else{
-				$errorCode=1;
-				$error="<div class=\"alert alert-danger\">";
-				$error.=  "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
-				$error.=  "<strong>Error!</strong> Your old password is mismatch from our database.";
-				$error.= "</div>";
-			} $select->free();
+				$oldPass=hash("sha512",$_POST["oldPass"]);
+				$select=$db->query("SELECT * FROM admin where username like '$username' AND password like '$oldPass'");
+
+				if($select->num_rows){
+						
+				} else{
+					$errorCode=1;
+					$error="<div class=\"alert alert-danger\">";
+					$error.=  "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>";
+					$error.=  "<strong>Error!</strong> Your old password is mismatch from our database.";
+					$error.= "</div>";
+				} 
 		}
 		
 	}

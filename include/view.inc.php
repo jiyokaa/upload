@@ -55,7 +55,7 @@ function getNav(){
 				  <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management<span class="caret"></span></a>
 				  <ul class="dropdown-menu">
 					<li><a href="user.php"><i class="fa fa-user-plus"></i> New User</a></li>
-					<li><a href="#"><i class="fa fa-users"></i> List all user</a></li>
+					<li><a href="passwd.php"><i class="fa fa-users"></i>Change your password</a></li>
 				  </ul>
 				</li>
 		<?php
