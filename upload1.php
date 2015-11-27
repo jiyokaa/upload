@@ -23,7 +23,7 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
 <?php
-
+session_start();
 /*
 * 	   Simple file Upload system with PHP.
 * 	   Created By Tech Stream
@@ -39,7 +39,7 @@
 *      GNU General Public License for more details.
 *     
 */
-error_reporting(All);
+error_reporting(0);
 	require 'db/connect.php' ;
 	require 'function/security.php';
 	include "lib/WideImage.php";
@@ -74,44 +74,69 @@ error_reporting(All);
 		}				
 		if(empty($errors)==true){
 			move_uploaded_file($file_tmp,"wallpaper/All/".$file_name);
+			$path ="All"; //For paht log
 			if($_POST["Classroom1"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Classroom/".$file_name);
 				$image = WideImage::load("wallpaper/Classroom/".$file_name);
 				$resized = $image->resize(1024, 768);
 				$resized->saveToFile("wallpaper/Classroom/".$file_name);
+				$path.=", Classroom1";
 			}
 			if($_POST["Classroom2"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Classroom2/".$file_name);
 				$image = WideImage::load("wallpaper/Classroom2/".$file_name);
 				$resized = $image->resize(1024, 768);
 				$resized->saveToFile("wallpaper/Classroom2/".$file_name);
+				$path.=", Classroom2";
 			}
 			if($_POST["Dormitory"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Dormitory/".$file_name);
 				$image = WideImage::load("wallpaper/Dormitory/".$file_name);
 				$resized = $image->resize(1980, 1080);
-				$resized->saveToFile("wallpaper/Dormitory/".$file_name);			
+				$resized->saveToFile("wallpaper/Dormitory/".$file_name);
+				$path.=", Dormitory";
 			}
 			if($_POST["ITMT"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/ITMT/".$file_name);
 				$image = WideImage::load("wallpaper/ITMT/".$file_name);
 				$resized = $image->resize(1980, 1080);
-				$resized->saveToFile("wallpaper/ITMT/".$file_name);				
+				$resized->saveToFile("wallpaper/ITMT/".$file_name);
+				$path.=", ITMT";
 			}
 			if($_POST["LAB"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/LAB/".$file_name);	
 				$image = WideImage::load("wallpaper/LAB/".$file_name);
 				$resized = $image->resize(1980, 1080);
-				$resized->saveToFile("wallpaper/LAB/".$file_name);		
+				$resized->saveToFile("wallpaper/LAB/".$file_name);	
+				$path.=", LAB";
 			}				
 			if($_POST["Sirindralai"]=="true"){
 				copy("wallpaper/All/".$file_name, "wallpaper/Sirindralai/".$file_name);
 				$image = WideImage::load("wallpaper/Sirindralai/".$file_name);
 				$resized = $image->resize(1980, 1080);
-				$resized->saveToFile("wallpaper/Sirindralai/".$file_name);	
+				$resized->saveToFile("wallpaper/Sirindralai/".$file_name);
+				$path.=", Sirindralai";				
 			}				
 			//เขียน Log
 			
+			$username=$_SESSION["username"];
+			$fileName=$_FILES['image']['name'];
+			$expire=$_POST["expire"];
+			
+			
+			
+				$insert=$db->prepare("INSERT INTO log (id, username, fileName, path, expire, updateTime) VALUES (NULL, ?, ?, ?, ?, NOW())");
+				$insert->bind_param('ssss',$username, $fileName, $path, $expire);
+				
+				if($insert->execute()){
+			echo "<div class=\"alert alert-success\">";
+			echo  "<strong>Success!</strong> For the logs.";
+			echo "</div>";			
+					
+				}
+						
+			
+			//จบการเขียน Log
 			echo "<div class=\"alert alert-success\">";
 			echo  "<strong>Success!</strong> Click OK Button to return to the index page.";
 			echo "</div>";			
