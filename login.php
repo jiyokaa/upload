@@ -32,6 +32,18 @@
 						$_SESSION["username"] = $username ;
 						$_SESSION["password"] = $password ;
 						$_SESSION["auth"] = true;
+						
+						//Get isAdmin value
+						while($row=$results->fetch_object()) {
+							$records[]=$row;	
+						}
+						
+						foreach($records as $r){
+							$_SESSION["isAdmin"] = $r->isAdmin;
+						}
+						
+						
+						
 						header("Location: upload.php");
 					}else {
 						
