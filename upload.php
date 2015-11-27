@@ -53,9 +53,18 @@
 				  <label><input type="checkbox" name="Sirindralai" value="true">Sirindralai (16:9)</label>
 				</div>
 			<input type="submit" class="btn btn-primary" /> 
-			<a href="elfinder/fileManage.php" target="_blank" class="btn btn-danger">Delete Picture Page</a> <a href="logout.php" class="btn btn-primary">Logout</a>
-			
 			</form>
+			<a href="elfinder/fileManage.php" target="_blank" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Picture Page</a>
+			
+			<?php
+				if($_SESSION["isAdmin"] == '1'){
+			?>
+			<a href="#" class="btn btn-primary"> <i class="fa fa-users"></i> Users Management</a>
+			
+			<?php
+				}
+			?>
+			 <a href="logout.php" class="btn btn-primary"><i class="fa fa-sign-out"></i> Logout</a> 
 		</div>
 		<div class="col-sm-2"></div>
 	</div>
