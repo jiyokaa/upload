@@ -63,7 +63,9 @@ function getNav(){
 		?>
 
 			<li><a href="passwd.php"><i class="fa fa-pencil"></i> Change your password</a></li>
+			
 				<?php } ?>
+			<li><a href="viewlog.php"><i class="fa fa-list-alt"></i> Logs</a></li>
 			<li><a href="elfinder/fileManage.php" target="_blank"><i class="fa fa-trash"></i> Delete Picture Page</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
